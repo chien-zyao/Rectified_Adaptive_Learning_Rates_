@@ -1,0 +1,44 @@
+from keras.optimizers import Optimizer
+from keras import backend as K
+
+class Rectified_Optimizer:
+  def __init__(self, optimizer):
+    self.optimizer = Rectified_lr(optimizer)
+  
+  def __call__(self, *args, **kwargs):
+    return self.optimizer(*args, **kwargs)
+  
+
+
+
+
+original_optimizer = keras.optimizers.get(optimizer)
+rect_seq = self.get_rt(original_optimizer)
+   class Rectified_lr(Optimizer):
+     def __init__(self,*args,**kwargs):
+        """
+        Initialize COCOB Optimizer
+        Args:
+            alpha: Refer to paper.
+        """
+        super().__init__(**kwargs)
+        self.ori_optr = original_optimizer(*args,**kwargs)
+        with K.name_scope(self.__class__.__name__):
+            self.iterations = K.variable(0, dtype='int64', name='iterations')
+            self.r = K.variable(rect_seq[0], dtype='int64', name='rectifying_factor')
+    
+    def get_updates(self, loss, params, contraints=None):
+        r = rec_seq[self.iterations + 1]
+        self.updates = [K.update_add(self.iterations, 1)]
+        self.updates.extend(self.ori_optr.get_updates(params, loss, contraints=None))
+
+        for p in params:
+            p =  p - r * 
+            
+            self.updates.append(K.update(p, param_update))
+  
+        return self.updates
+        
+        
+        self.updates.append(K.update(self.r, r))
+        self.updates.
